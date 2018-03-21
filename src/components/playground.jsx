@@ -14,7 +14,11 @@ class ReactPlayground extends Component {
     noRender: true,
     context: {},
     initiallyExpanded: false,
-    onChange: () => {}
+    onChange: () => {},
+    lineNumbers: false,
+    lineWrapping: true,
+    smartIndent: false,
+    tabSize: 4,
   };
 
   static propTypes = {
@@ -30,7 +34,11 @@ class ReactPlayground extends Component {
     context: PropTypes.object,
     initiallyExpanded: PropTypes.bool,
     previewComponent: PropTypes.node,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    lineNumbers: PropTypes.bool,
+    lineWrapping: PropTypes.bool,
+    smartIndent: PropTypes.bool,
+    tabSize: PropTypes.number
   };
 
   state = {
@@ -73,6 +81,10 @@ class ReactPlayground extends Component {
       propDescriptionMap,
       scope,
       selectedLines,
+      lineNumbers,
+      lineWrapping,
+      smartIndent,
+      tabSize,
       theme } = this.props;
 
     return (
@@ -91,8 +103,11 @@ class ReactPlayground extends Component {
             external={external}
             onChange={this._handleCodeChange}
             selectedLines={selectedLines}
-            theme={theme}
-          />
+            lineNumbers={lineNumbers}
+            lineWrapping={lineWrapping}
+            smartIndent={smartIndent}
+            tabSize={tabSize}
+            theme={theme} />
         </div>
         {
           collapsableCode ?
