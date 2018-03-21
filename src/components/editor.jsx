@@ -11,13 +11,17 @@ class Editor extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    codeText: PropTypes.string,
     external: PropTypes.bool,
-    onChange: PropTypes.func,
+    codeText: PropTypes.string,
+    theme: PropTypes.string,
+    lineNumbers: PropTypes.bool,
+    smartIndent: PropTypes.bool,
+    lineWrapping: PropTypes.bool,
+    tabSize: PropTypes.number,
     readOnly: PropTypes.bool,
+    onChange: PropTypes.func,
     selectedLines: PropTypes.array,
-    style: PropTypes.object,
-    theme: PropTypes.string
+    style: PropTypes.object
   };
 
   componentDidMount = () => {
@@ -42,18 +46,25 @@ class Editor extends Component {
     const {
       className,
       external,
-      style,
       codeText,
       theme,
-      readOnly
+      lineNumbers,
+      smartIndent,
+      lineWrapping,
+      onChange,
+      tabSize,
+      readOnly,
+      selectedLines,
+      style,
     } = this.props;
 
     const options = {
       mode: "jsx",
-      lineNumbers: false,
-      lineWrapping: true,
-      smartIndent: false,
       matchBrackets: true,
+      lineWrapping,
+      smartIndent,
+      lineNumbers,
+      tabSize,
       theme,
       readOnly
     };
